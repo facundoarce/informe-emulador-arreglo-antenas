@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{includes}
+
+\title{Emulador de arreglo de antenas para recepción de satélites}
+\date{2020}
+\author{Facundo Arce Vieyra, Ing. Nicolás Catalano, Ing. Cristian Roddick}
+
+\begin{document}
+
+	% Title
+	\maketitle
+	\todo[inline]{Hacer una carátula más linda}
+	\pagenumbering{gobble}
+	\newpage
+	% \import{sections/}{portada}
+
+	% Abstract
+	\begin{abstract}
+		\import{sections/}{abstract}
+	\end{abstract}
+	\pagenumbering{arabic}
+	\newpage
+
+	% To-do notes
+	\listoftodos
+
+	% Table of contents
+	\newpage
+	\thispagestyle{plain}
+	\doublespacing
+	\bigskip
+	\tableofcontents
+
+	% Body
+	\newpage
+	\singlespacing
+
+	\import{sections/}{introduccion}
+	\newpage
+
+	\import{sections/}{modelo}
+	\newpage
+
+	\import{sections/}{implementacion}
+	\newpage
+
+	\import{sections/}{resultados}
+	\newpage
+
+	\import{sections/}{conclusiones}
+	\newpage
+
+	%Bibliography
+	\printbibliography
+	\newpage
+
+	% Appendix
+	\begin{appendix}
+		\listoffigures
+	\end{appendix}
+
+\end{document}

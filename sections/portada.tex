@@ -1,0 +1,71 @@
+% %% Deckblatt für Studien- und Diplomarbeiten am Institut fuer
+% %% Regelungstechnik der TU Braunschweig
+% %\setlength{
+% \topmargin}{-2.5cm}
+%
+% \thispagestyle{empty}
+% {
+%
+% \fontfamily{phv}\selectfont
+%
+%
+% %\author{Directores: \\Mgter. Germán Fernández e Ing. Lucas Arjona\\Lugar de trabajo: \\Grupo de Comunicaciones \'{O}pticas, Depto. de Ingeniería en Telecomunicaciones\\Centro Atómico Bariloche\\}
+%
+% \begin{center}
+
+
+\documentclass{article}
+\newenvironment{standalone}{\begin{preview}}{\end{preview}}
+\usepackage{../includes}
+
+\graphicspath{{../images/}}
+
+\begin{document}
+\begin{standalone}
+
+
+{\large \textbf{Beca de Verano Instituto Balseiro}} %% Entsprechenden Typ auswählen
+
+\includegraphics[width=0.2\textwidth]{logo-balseiro.png}
+
+\vspace{4cm} %%% Bei mehrzeiligen Titeln (mehr als drei Zeilen) muss dieser Abstand verringert werden
+
+\parbox{0.7\textwidth}{
+  \begin{center}
+    \huge \textbf{%
+      Emulador de arreglo \\[1.2ex]
+      de antenas para \\[1.2ex]
+      recepción de satélites
+      }
+  \end{center}
+  }
+
+\vfill
+%\begin{minipage}[c]{textwidth}
+{\fontsize{12}{12} \selectfont%
+  \textbf{Facundo Arce Vieyra}
+}\\
+\vspace{1cm}
+
+
+\hrule
+
+\vspace{1cm}
+
+{\fontsize{12pt}{12} \selectfont%
+\begin{tabular}{lcl}
+Directores &:& Ing. Nicolás Catalano\\[0.5ex]
+& & Ing. Cristian Roddick\\[0.5ex]  %%Bitte den entsprechenden Professor einkommentieren
+ %&:& Musterassi\\[0.5ex] %Hier den richtigen akademischen Titel des Assistenten eintragen. (siehe Homepage)
+Presentado &:& 28/02/2020
+\end{tabular}
+}
+%\end{minipage}
+% \end{center}
+% }
+%\normalsize
+\end{standalone}
+\end{document}
+
+\newpage
+%\setlength{\topmargin}{0cm}

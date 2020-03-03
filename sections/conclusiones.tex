@@ -1,0 +1,25 @@
+\documentclass{article}
+\newenvironment{standalone}{\begin{preview}}{\end{preview}}
+\usepackage{../includes}
+
+\begin{document}
+\begin{standalone}
+  \section{Conclusiones}
+
+  Se modelaron las señales recibidas por los elementos de un arreglo lineal de antenas para señales emitidas por un satélite en órbita baja.
+  Para esto se estudió el movimiento del satélite, la señal emitida y los fenómenos que modifican la señal recibida por los elementos del arreglo teniendo en cuenta el corrimiento de frecuencia por efecto Doppler, los desfasajes producidos por la geometría del arreglo y la diferencia de amplitud por las pérdidas en espacio libre.
+
+  Se implementó un prototipo de un emulador de arreglo de antena de 1x4.
+  Este prototipo consiste de un microcontrolador y un sintetizador digital directo.
+  El microcontrolador calcula las señales a emular de acuerdo con el modelo estudiado y se comunica con el sintetizador para darle los comandos de frecuencia, fase y amplitud.
+  El sintetizador recibe esos comandos y entrega a la salida las señales deseadas.
+
+  Se comprobó que dichas señales se correspondan con el modelo propuesto mediante el análisis de las señales generadas en un osciloscopio y un analizador de espectro.
+  Con el analizador de espectro se realizó además una breve caracterización de la respuesta en frecuencia del sintetizador.
+  Por último, también se comprobó el módelo mediante la realización de un apuntamiento de haz mediante cables de distintas longitudes, induciendo así retardos en las señales.
+
+  Se deja como trabajos a futuro, la mejora del modelo propuesto, como la inclusión de la modulación de la señal emitida, la consideración de una órbita real del satélite y de otras pérdidas, no sólo por espacio libre.
+  Se propone además, extender el prototipo realizado a un arreglo de Nx4, con la utilización de N sintetizadores.
+
+\end{standalone}
+\end{document}

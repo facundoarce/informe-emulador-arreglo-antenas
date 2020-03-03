@@ -1,0 +1,85 @@
+\ProvidesPackage{includes}[2019/04/17 All the includes, commands and option for dissertation]
+
+% Preambles for the whole document as seen at: https://www.overleaf.com/learn/latex/Management_in_a_large_project
+
+% Packages needed
+\usepackage[a4paper, margin=1.25in]{geometry}
+\usepackage[T1]{fontenc} % (needed for matlab code) % install cm-unicode to avoid blurry fonts
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{standalone}
+\usepackage{import}
+\usepackage{preview}
+\usepackage{graphicx}
+\usepackage[outdir=./]{epstopdf} % eps in figure
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage{tikz} % custom graphics
+\usepackage{amsmath} % math functions
+\usepackage{fp} % fixed point arithmetic
+
+\usepackage{pgfplots} % axes in plots
+\usepackage{subcaption} % subfigures
+\usepackage{amssymb} % \mathbb{} for real numbers symbol
+\usepackage{textcomp} % so gensymb doesn't throw exceptions
+\usepackage{gensymb} % for \degree
+\usepackage[backend=bibtex]{biblatex} % cites (add style=alphabetic for alphabetic references)
+\usepackage{csquotes}
+\usepackage{mathtools} % mathematical tools to use with amsmath
+\usepackage{bm} % \bm for bold math symbols
+\usepackage{enumitem} % customize items
+\usepackage{setspace} % \singlespacing, \doublespacing
+\usepackage{todonotes} % \todo
+\usepackage{xr} % for references to other documents \externaldocument
+\usepackage{hyperref} % enables hypertext
+\usepackage[spanish]{cleveref} % for clever references (must be the last)
+\usepackage{booktabs} % for tables
+\usepackage{wasysym} % for extra symbols like \Circle \CIRCLE \LEFTcircle
+\usepackage{cellspace} % for extra spacing in tables as seen at https://tex.stackexchange.com/questions/206968/arraystretch-in-conjunction-with-booktabs
+\usepackage[draft]{animate} % for animations. Add [draft] option to reduce compilation time before final version
+\usepackage[numbered,framed]{matlab-prettifier} % for matlab code
+\usepackage[section]{placeins} % so figures are shown in the current section
+
+\usepackage{siunitx}  % for units in equations as seen at https://tex.stackexchange.com/questions/166580/writing-an-equation-with-the-units-positioned-off-right
+\sisetup{detect-all}
+
+\makeatletter
+\providecommand\add@text{}
+\newcommand\tagaddtext[1]{%
+  \gdef\add@text{#1\gdef\add@text{}}}%
+\renewcommand\tagform@[1]{%
+  \maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*{\textoverline}[1]{$\overline{\hbox{#1}}\m@th$} % use overline outside math mode
+\makeatother
+
+% Other useful settings
+\newcommand*\centermathcell[1]{\omit\hfil$\displaystyle#1$\hfil\ignorespaces} % for aligning inequality equations
+\newcommand{\lagr}{\mathcal{L}} % for lagrangian function symbol
+\captionsetup[subfigure]{labelformat = parens, labelsep = space} % so the caption of subfigures are "(a) Caption"
+\DeclareMathOperator{\sgn}{sgn} % for sgn operator
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+\usetikzlibrary{calc, shapes.geometric, positioning}
+\pgfplotsset{compat=1.11}
+\graphicspath {{images/}{../images/}} % {images/} for main {../images/} for sections
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+
+% Redefines \todo as only \todo[inline] works with standalone files
+% seen in: https://tex.stackexchange.com/questions/12328/how-can-i-use-todonotes-with-beamer?rq=1
+% \let\todox\todo
+% % \renewcommand\todo[2][]{\todox[inline,#1]{#2}}
+% \renewcommand\todo[1]{\todox[inline]{#1}}
+
+% References
+% seen in: https://tex.stackexchange.com/questions/304260/is-there-a-way-to-use-todonotes-in-standalone
+% \makeatletter
+% \def\IfClass#1#2#3{\@ifundefined{opt@#1.cls}{#3}{#2}}
+% \makeatother
+% \IfClass{article}{\addbibresource{../references.bib}}{\addbibresource{references.bib}}
+
+% \addbibresource{../references.bib}
+\addbibresource{references.bib}
