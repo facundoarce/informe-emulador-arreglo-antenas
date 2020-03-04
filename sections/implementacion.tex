@@ -5,7 +5,7 @@
 
 \begin{document}
 \begin{standalone}
-  \section{Implementación}
+  \section{Implementación del emulador}
 
   \subsection{Componentes}
 
@@ -27,14 +27,23 @@
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\linewidth, height=60mm, keepaspectratio]{../images/ad9959.jpg}
+    % image from: https://www.amazon.co.uk/Nobsound-AD9959-Frequency-Generator-4-Channel/dp/B07D5V2TDS
     \caption{Placa de desarrollo del sintetizador digital AD9959.}
     \label{fig:ad9959}
   \end{figure}
 
   \subsection{Comunicación y conexiones}
 
-  La placa de desarrollo del A9959 tiene 14 pines de entrada y salida y un jumper.
-  Conectamos los pines de entrada y salida al microcontrolador como se muestra en la \cref{fig:conexiones}.
+  La placa de desarrollo del A9959 tiene un puerto de datos con 14 pines de entrada y salida, 4 pines para la sincronización de múltiples sintetizadores y un jumper para la selección de reloj.
+
+  El jumper controla la entrada de reloj de referencia del sintetizador.
+  Se puede elegir entre una entrada externa de reloj o un cristal de 25 MHz que ya viene en la placa.
+  Por simplicidad, posicionamos el jumper para elegir la última opción.
+
+  Los cuatro pines de sincronización de múltiples dispositivos son SYNC\_CLK, SYNC\_IN, SYNC\_OUT y GND.
+  Su funcionamiento se mencionará en el \cref{subsec:sincronizacion}.
+
+  Con respecto al puerto de datos, conectamos los pines al microcontrolador como se muestra en la \cref{fig:conexiones}.
 
   \begin{figure}[!htbp]
     \centering
@@ -72,14 +81,8 @@
   Los pines P0 a P3 del AD9959 se usan para modulación.
   Como no utilizaremos esta funcionalidad, podemos dejar estos pines flotando.
 
-  Necesitamos además que el sintetizador y el microcontrolador tengan una tierra común.
+  Necesitamos finalmente que el sintetizador y el microcontrolador tengan una tierra común.
   Para esto, conectamos los pines GND de ambos dispositivos.
-
-  Por último, el jumper que tiene la placa de desarrollo del AD9959 controla la entrada de reloj de referencia del sintetizador.
-  Se puede elegir entre una entrada externa de reloj o un cristal de 25 MHz que ya viene en la placa.
-  Por simplicidad, elegimos la última opción.
-
-  \todo[inline]{Agregar algo sobre los pines para sincronizar varios DDS}
 
   \subsection{Configuración inicial de registros}
 
@@ -166,6 +169,33 @@
   \end{equation}
   siendo $0 \leq a_{out} \leq 1$ la amplitud de salida normalizada.
   Los bits 23 a 10 definen otros parámetros de la amplitud que no utilizaremos para nuestro prototipo, por lo que los dejamos en 0.
+
+  \subsection{Sincronización de múltiples sintetizadores} \label{subsec:sincronizacion}
+
+  El AD9959 permite sincronizar múltiples sintetizadores del mismo modelo fácilmente \cite[29,30]{ad9959_datasheet}.
+  Esto es una característica especialmente interesante si queremos extender el sistema propuesto para un arreglo plano de antenas.
+
+  Existe un modo automático y dos manuales para la sincronización de los sintetizadores.
+  A continuación explicaremos, brevemente, el modo automático por ser el de más fácil implementación.
+
+  Un AD9959 actuará como maestro y el resto, como esclavo.
+  En lo que respecta a las conexiones, el pin SYNC\_OUT del maestro se conecta al pin SYNC\_IN de los esclavos.
+  Un circuito interno de autosincronización se encarga de que las máquinas de estados de los esclavos se igualen a las del maestro.
+  El pin SYNC\_CLK no se utiliza para el modo automático, sí para los modos manuales.
+  Se debe además interconectar los pines GND para unificar la tierra de los dispositivos.
+
+  En lo que respecta a la configuración de registros, se debe escribir el bit 7 del registro \textit{Function Register 2} (FR2), dirección 0x02, en 1 para activar el modo de sincronización automático.
+  La asignación de maestro y esclavos se realiza mediante el bit 6 del registro FR2.
+  Un 1 determina que el dispositivo es maestro, un 0, esclavo.
+  El bit 5 del FR2 indica que hubo una falla en la sincronización, pero no la detiene.
+
+  Lo descripto anteriormente sincroniza las máquinas de estado de los dispositivos, pero se debe tener además especial cuidado con el pin IO\_UPDATE.
+  La salida del microcontrolador que controla este pin debe llegar a todos los sintetizadores simultáneamente.
+  Si hubiese algún retraso, se producirá un desfasaje indeseado de las señales.
+
+  Por último, la comunicación SPI entre microcontrolador y sintetizadores debe respetar la configuración de esclavos independientes.
+  Cabe aclarar que, ahora, con maestro nos referimos al microcontrolador y con esclavos, a todos los sintetizadores (independientemente de cuál es el sintetizador maestro o esclavo en la sincronización).
+  En esta configuración de esclavos independientes, las líneas SCLK, MOSI y MISO son compartida entre todos los esclavos y las lineas de \textoverline{CS} son individuales, es decir que hay una para cada esclavo, y controlan con cuál dispositivo se quiere comunicar el maestro.
 
 \end{standalone}
 \end{document}

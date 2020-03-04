@@ -7,11 +7,12 @@
 \usepackage[T1]{fontenc} % (needed for matlab code) % install cm-unicode to avoid blurry fonts
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+\usepackage[english, spanish]{babel}
 \usepackage{standalone}
 \usepackage{import}
 \usepackage{preview}
 \usepackage{graphicx}
+\usepackage[section]{placeins} % so figures are shown in the current section
 \usepackage[outdir=./]{epstopdf} % eps in figure
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{tikz} % custom graphics
@@ -38,7 +39,6 @@
 \usepackage{cellspace} % for extra spacing in tables as seen at https://tex.stackexchange.com/questions/206968/arraystretch-in-conjunction-with-booktabs
 \usepackage[draft]{animate} % for animations. Add [draft] option to reduce compilation time before final version
 \usepackage[numbered,framed]{matlab-prettifier} % for matlab code
-\usepackage[section]{placeins} % so figures are shown in the current section
 
 \usepackage{siunitx}  % for units in equations as seen at https://tex.stackexchange.com/questions/166580/writing-an-equation-with-the-units-positioned-off-right
 \sisetup{detect-all}
@@ -67,6 +67,19 @@
 \graphicspath {{images/}{../images/}} % {images/} for main {../images/} for sections
 \setlength\cellspacetoplimit{4pt}
 \setlength\cellspacebottomlimit{4pt}
+
+% Keywords command
+\providecommand{\palabrasclave}[1]
+{
+  \small
+  \textbf{\textit{Palabras clave---}} #1
+}
+
+\providecommand{\keywords}[1]
+{
+  \small
+  \textbf{\textit{Keywords---}} #1
+}
 
 % Redefines \todo as only \todo[inline] works with standalone files
 % seen in: https://tex.stackexchange.com/questions/12328/how-can-i-use-todonotes-with-beamer?rq=1

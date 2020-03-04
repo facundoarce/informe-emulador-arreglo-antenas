@@ -5,7 +5,7 @@
 
 \begin{document}
 \begin{standalone}
-  \section{Modelo de las señales recibidas} \label{sec:modelo-senales}
+  \section{Modelo del sistema} \label{sec:modelo-senales}
 
   \subsection{Movimiento del sátelite}
 
@@ -54,12 +54,14 @@
 
   Normalmente, el satélite emite información utilizando alguna técnica de modulación. Esto escapa a los objetivos del presente trabajo, por lo que se supondrá que el satélite emite una onda sinusoidal a una frecuencia base $f_0$.
 
+  \subsection{Señales recibidas por los elementos del arreglo de antena}
+
   Existen diferentes fenómenos que modifican la señal base y producen que las señales recibidas por los elementos del arreglo de antena varíen en frecuencia, fase y amplitud.
   Resulta necesario tener esto en cuenta para poder reconstruir correctamente la información emitida por el satélite.
 
   A continuación, analizaremos estas variaciones y los fenómenos que las producen para el caso general de un satélite en órbita baja y un arreglo lineal de antenas. Los gráficos se mostrarán para el caso particular en que la altitud de vuelo del satélite es $h = 650km$, la frecuencia base emitida $f_0 = 150MHz$, el número de elementos del arreglo $K = 4$ y la distancia entre elementos $d_{elem} = \lambda_0 / 2 = 1 m$.
 
-  \subsection{Diferencia de fase debida a la geometría del arreglo}
+  \subsubsection{Diferencia de fase debida a la geometría del arreglo}
 
   Debido a la separación equidistante de los elementos del arreglo, la señal proveniente del satélite tendrá un retraso entre los distintos elementos igual a \cite[126]{visser2005}
   \begin{equation}
@@ -84,7 +86,7 @@
     \label{fig:phase-offset}
   \end{figure}
 
-  \subsection{Diferencia de frecuencia debida al efecto Doppler}
+  \subsubsection{Diferencia de frecuencia debida al efecto Doppler}
 
   Durante una pasada, el satélite se acercará a la estación terrena desde que aparece por el horizonte hasta que llega a su cénit para luego alejarse hasta desaparecer por el otro horizonte. Este movimiento relativo del sátelite respecto a la estación terrena provoca un cambio en la frecuencia recibida conocido como efecto Doppler.
 
@@ -115,7 +117,7 @@
     \label{fig:doppler-shift-derivative}
   \end{figure}
 
-  \subsection{Diferencia de amplitud debida a pérdidas por trayectoria en espacio libre}
+  \subsubsection{Diferencia de amplitud debida a pérdidas por trayectoria en espacio libre}
 
   % Cuando una radiación electromagnética viaja entre dos puntos, ocurre una atenuación de potencia debido
 
@@ -161,7 +163,7 @@
   % lo que haría aún más difícil la recepción de señales
   % No se ha considerado la diferencia de amplitud debido al patrón de radiación de los elementos del arreglo.
 
-  \subsection{Señal recibida en función del tiempo}
+  \subsubsection{Señal recibida en función del tiempo}
 
   Para completar el modelo, vamos a expresar la frecuencia, fase y amplitud de las señales recibidas en función del tiempo.
   Para ello, parametrizamos $\theta$ en función del tiempo,

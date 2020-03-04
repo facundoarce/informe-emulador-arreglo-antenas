@@ -7,17 +7,29 @@
 
 \begin{document}
 
-	% Title
-	\maketitle
-	\todo[inline]{Hacer una carátula más linda}
-	\pagenumbering{gobble}
+	% Cover
+	\import{sections/}{portada}
 	\newpage
-	% \import{sections/}{portada}
 
 	% Abstract
+	\selectlanguage{spanish}
+	\begin{abstract}
+		\import{sections/}{resumen}
+	\end{abstract}
+
+	\bigskip
+	\palabrasclave{arreglo de antenas, satélites de órbita baja, emulación, síntesis digital directa}
+
+	\bigskip \bigskip
+	\selectlanguage{english}
 	\begin{abstract}
 		\import{sections/}{abstract}
 	\end{abstract}
+
+	\bigskip
+	\keywords{antenna array, low Earth orbit satellites, emulation, direct digital synthesis}
+
+	\selectlanguage{spanish}
 	\pagenumbering{arabic}
 	\newpage
 
@@ -36,27 +48,26 @@
 	\singlespacing
 
 	\import{sections/}{introduccion}
-	\newpage
+	\clearpage	% use clearpage instead of newpage to make sure all floats are set before the new page
 
 	\import{sections/}{modelo}
-	\newpage
+	\clearpage
 
 	\import{sections/}{implementacion}
-	\newpage
+	\clearpage
 
 	\import{sections/}{resultados}
-	\newpage
+	\clearpage
 
 	\import{sections/}{conclusiones}
-	\newpage
+	\clearpage
 
 	%Bibliography
 	\printbibliography
-	\newpage
 
 	% Appendix
-	\begin{appendix}
-		\listoffigures
-	\end{appendix}
+	% \begin{appendix}
+	% 	\listoffigures
+	% \end{appendix}
 
 \end{document}
