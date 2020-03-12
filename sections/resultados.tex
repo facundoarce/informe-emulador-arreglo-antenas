@@ -11,7 +11,7 @@
   \subsection{Observaciones en el osciloscopio}
 
   Conectamos las salidas de los canales analógicos a un osciloscopio MSO 2024B de la marca Tektronix.
-  Este osciloscopio, que puede apreciarse en la \cref{fig:osciloscopio}, posee cuatro entradas analógicas y acepta señales de hasta 200 MHz, por lo que es ideal para nuestra aplicación.
+  Este osciloscopio, que puede apreciarse en la \cref{fig:osciloscopio}, posee cuatro canales analógicos y cuenta con un ancho de banda analógico de 200 MHz, por lo que es ideal para nuestra aplicación.
 
   \begin{figure}[!htbp]
     \centering
@@ -20,7 +20,7 @@
     \label{fig:osciloscopio}
   \end{figure}
 
-  Capturamos nueve momentos de la pasada del sátelite a intervalos regulares y obtuvimos las imágenes que se pueden observar en la \cref{fig:pasada-osciloscopio}.
+  Capturamos nueve momentos de la pasada del satélite a intervalos regulares y obtuvimos las imágenes que se pueden observar en la \cref{fig:pasada-osciloscopio}.
 
   \begin{figure}[!htbp]
     \centering
@@ -45,9 +45,9 @@
   Cuando el satélite aparece por el horizonte, la amplitud es mínima y las señales de elementos consecutivos están en contrafase.
   A medida que el satélite avanza, la amplitud y el desfase de las señales aumenta.
   Al llegar al cénit, la amplitud es máxima y todas las señales están en fase.
-  El proceso inverso ocurre a partir de que el sátelite pasa por el cénit hasta que se oculta en el otro horizonte.
+  El proceso inverso ocurre a partir de que el satélite pasa por el cénit hasta que se oculta en el otro horizonte.
 
-  Sin embargo, no es posible ver el corrimiento de frecuencia de las señales porque, para la frecuencia base analizada, 150 MHz, las variaciones de frecuencia presentes ($\pm$ 4 kHz) son menores a la resolución del osciloscopio.
+  Sin embargo, no es posible ver el corrimiento de frecuencia de las señales porque, para la frecuencia central analizada, 150 MHz, las variaciones de frecuencia presentes ($\pm$ 4 kHz) no son apreciables.
   Por ello, recurrimos a un analizador de espectro para poder observar con precisión la frecuencia de las señales.
 
   \subsection{Observaciones en el analizador de espectro}
@@ -114,7 +114,7 @@
 
   Para validar este fenómeno, sumamos las señales de salida del sintetizador usando, en primer lugar, cables de igual longitud.
   Los cables de igual longitud producen retardos iguales en las señales.
-  Obsarvamos la suma de las señales en el osciloscopio para una pasada del satélite y pudimos corroborar que la máxima señal se daba en $\theta = 0\degree$.
+  Observamos la suma de las señales en el osciloscopio para una pasada del satélite y pudimos corroborar que la máxima señal se daba en $\theta = 0\degree$.
 
 
   Si tenemos cables de diferentes longitudes, el retardo entre las señales $t_{\text{offset}}$ esperado es
@@ -137,8 +137,8 @@
   La diferencia promedio entre los cables es de 227 mm, por lo que el desfasaje entre las señales teórico es de aproximadamente $\phi_{\text{offset}} = - 62\degree$, lo que corresponde a un apuntamiento en $\theta = -20\degree$.
 
   Corroboramos en el osciloscopio que la sumatoria de las señales es en efecto máxima alrededor de $\theta = -20\degree$.
-  Si graficamos el patrón de radiación de antena, vemos que además del lóbulo principal, que corresponde a la dirección de apuntamiento, existen lóbulos secundarios que determinan zonas de cancelamiento y máximos locales.
-  Pudimos observar en el osciloscopio estas zonas de cancelamientos y máximos locales.
+  Si graficamos el patrón de radiación de antena, vemos que además del lóbulo principal, que corresponde a la dirección de apuntamiento, existen lóbulos secundarios que determinan zonas de cancelación y máximos locales.
+  Pudimos observar en el osciloscopio estas zonas de cancelación y máximos locales.
 
   La configuración usada puede verse en la \cref{fig:setup-apuntamiento}.
   En la computadora tenemos el patrón de radiación de la antena y una terminal en dónde el microcontrolador imprime la posición del satélite $\theta$ que se está emulando.

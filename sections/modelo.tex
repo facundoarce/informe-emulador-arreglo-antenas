@@ -7,9 +7,12 @@
 \begin{standalone}
   \section{Modelo del sistema} \label{sec:modelo-senales}
 
-  \subsection{Movimiento del sátelite}
+  \subsection{Movimiento del satélite}
 
-  Para este estudio, consideramos que la Tierra es perfectamente esférica y que el satélite está puesto en órbita terrestre baja describiendo una órbita circular por lo que el satélite realizará un movimiento circular uniforme.
+  Para este estudio, consideramos que la Tierra es esférica y que el satélite describe una órbita circular con velocidad angular constante por lo que se trata de un movimiento circular uniforme.
+
+  Llamamos $\alpha$ a la posición angular del satélite con respecto a la Tierra con origen en el punto en el que el satélite aparece por el horizonte local de la antena.
+  Para nuestro estudio, definimos también $\theta$, la posición angular del satélite con respecto a la antena con origen en la normal del arreglo.
 
   La velocidad tangencial del satélite es
   \begin{equation}
@@ -18,10 +21,10 @@
   \end{equation}
   y la velocidad angular,
   \begin{equation}
-    \omega = \frac{v_t}{R},
+    \omega = \frac{d\alpha}{dt} = \frac{v_t}{R},
     \tagaddtext{[\si{\radian\per\second}]}
   \end{equation}
-  donde $G = 6.673 \ 10^{-11} \frac{N m^2}{kg^2} $ es la constante de gravitación universal, $M_e = 5.98 \ 10^{24} kg$ es la masa de la Tierra y $R = R_e + h$ es el radio de la órbita del satélite, siendo el radio de la Tierra $R_e = 6371 km$ y $h$ la altitud de la trayectoria del satélite.
+  donde $G = 6.673 \ 10^{-11} \ \si{\newton\meter\squared\per\kilo\gram\squared}$ es la constante de gravitación universal, $M_e = 5.98 \ 10^{24} \ \si{\kilo\gram}$ es la masa de la Tierra y $R = R_e + h$ es el radio de la órbita del satélite, siendo el radio de la Tierra $R_e = 6371 \ \si{\kilo\meter}$ y $h$ la altitud de la trayectoria del satélite.
 
   Si suponemos que el satélite pasará por el cénit de nuestra estación terrena, tal como lo muestra la \cref{fig:esquema_satelite_antena}, para describir una pasada, es decir, el período en que el satélite está por encima del horizonte local y puede comunicarse con la estación terrena, deberá recorrer una distancia angular \cite{ippolitojr2008}
   \begin{equation}
@@ -41,25 +44,25 @@
     \label{fig:esquema_satelite_antena}
   \end{figure}
 
-  La distancia entre el satélite y la estación terrena dada en términos de $\theta$, el ángulo entre la perpendicular al eje del arreglo y la posición del satélite es \cite{popescu2016}
+  La distancia entre el satélite y la estación terrena dada en términos de $\theta$ es \cite{popescu2016}
   \begin{equation}
     d(\theta) = \sqrt{ R^2 - R_e^2  \sin^2{\theta} } - R_e \cos{\theta}.
     \tagaddtext{[\si{\meter}]}
   \end{equation}
-  Es evidente que la menor distancia se dará cuando el sátelite pase por el cénit de la estación terrena y $d(0) = h$ y la mayor distancia cuando el sátelite aparece y desaparece por el horizonte local y $d(\pm 90 \degree) = \sqrt{ h^2 + 2 R_e h }$.
+  La menor distancia se dará cuando el satélite pase por el cénit de la estación terrena y $d(0) = h$ y la mayor distancia, cuando el satélite aparece y desaparece por el horizonte local y $d(\pm 90 \degree) = \sqrt{ h^2 + 2 R_e h }$.
 
-  \subsection{Señal base emitida por el satélite}
+  \subsection{Señal base transmitida por el satélite}
 
-  Consideramos que el satélite es un radiador isotrópico, es decir que emite radiación electromagnética igualmente en todas las direcciones, por lo que la señal recibida en la estación terrena es independiente de la directividad del satélite. \todo{es así?}
+  Consideramos que el satélite es un radiador isotrópico, es decir que emite radiación electromagnética igualmente en todas las direcciones, por lo que la señal recibida en la estación terrena es independiente del apuntamiento del satélite.
 
-  Normalmente, el satélite emite información utilizando alguna técnica de modulación. Esto escapa a los objetivos del presente trabajo, por lo que se supondrá que el satélite emite una onda sinusoidal a una frecuencia base $f_0$.
+  El estudio de los esquemas de modulación empleados para la transmisión de la información escapan a los objetivos del presente trabajo, por lo que se supondrá que el satélite transmite una onda sinusoidal a una frecuencia $f_0$.
 
   \subsection{Señales recibidas por los elementos del arreglo de antena}
 
   Existen diferentes fenómenos que modifican la señal base y producen que las señales recibidas por los elementos del arreglo de antena varíen en frecuencia, fase y amplitud.
   Resulta necesario tener esto en cuenta para poder reconstruir correctamente la información emitida por el satélite.
 
-  A continuación, analizaremos estas variaciones y los fenómenos que las producen para el caso general de un satélite en órbita baja y un arreglo lineal de antenas. Los gráficos se mostrarán para el caso particular en que la altitud de vuelo del satélite es $h = 650km$, la frecuencia base emitida $f_0 = 150MHz$, el número de elementos del arreglo $K = 4$ y la distancia entre elementos $d_{elem} = \lambda_0 / 2 = 1 m$.
+  A continuación, analizaremos estas variaciones y los fenómenos que las producen para el caso general de un satélite en órbita baja y un arreglo lineal de antenas. Los gráficos se mostrarán para el caso particular en que la altitud de vuelo del satélite es $h = 650 \ \si{\kilo\meter}$, la frecuencia de transmisión $f_0 = 150 \ \si{\mega\hertz}$, el número de elementos del arreglo $K = 4$ y la distancia entre elementos $d_{elem} = \lambda_0 / 2 = 1 \ \si{\meter}$.
 
   \subsubsection{Diferencia de fase debida a la geometría del arreglo}
 
@@ -77,7 +80,7 @@
   \end{equation}
   donde $c = 3 \ 10^8 m/s$ es la velocidad de propagación de la radiación electromagnética en el espacio libre.
 
-  La \cref{fig:phase-offset} muestra la variación de fase para el arreglo y condiciones mencionadas previamente. Podemos observar que, debido a la elección de $d = \lambda_0 / 2$, cuando el satélite aparece y desaparece por el horizonte, todas las señales están desfasadas medio período unas de las otras y, cuando el sátelite está en el cénit de la estación terrena, todas las señales están en fase.
+  La \cref{fig:phase-offset} muestra la variación de fase para el arreglo y condiciones mencionadas previamente. Podemos observar que, debido a la elección de $d = \lambda_0 / 2$, cuando el satélite aparece y desaparece por el horizonte, las señales de elementos continuos están desfasadas medio período y, cuando el satélite está en el cénit de la estación terrena, todas las señales están en fase.
 
   \begin{figure}[!htbp]
     \centering
@@ -88,7 +91,7 @@
 
   \subsubsection{Diferencia de frecuencia debida al efecto Doppler}
 
-  Durante una pasada, el satélite se acercará a la estación terrena desde que aparece por el horizonte hasta que llega a su cénit para luego alejarse hasta desaparecer por el otro horizonte. Este movimiento relativo del sátelite respecto a la estación terrena provoca un cambio en la frecuencia recibida conocido como efecto Doppler.
+  Durante una pasada, el satélite se acercará a la estación terrena desde que aparece por el horizonte hasta que llega a su cénit para luego alejarse hasta desaparecer por el otro horizonte. Este movimiento relativo del satélite respecto a la estación terrena provoca un cambio en la frecuencia recibida conocido como efecto Doppler.
 
   El cambio de frecuencia está dado por \cite{popescu2016}
   \begin{equation}
@@ -113,7 +116,7 @@
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\linewidth, height=70mm, keepaspectratio]{../images/doppler-shift-derivative.eps}
-    \caption{Cambio de frecuencia debido al efecto Doppler.}
+    \caption{Tasa de cambio del corrimiento de frecuencia debido al efecto Doppler.}
     \label{fig:doppler-shift-derivative}
   \end{figure}
 
@@ -126,9 +129,9 @@
     P_l = 10 \log_{10}{ \frac{P_t}{P_r} } = -10 \log_{10}{ \frac{G_l \lambda^2}{\left( 4\pi \right)^2 d^2} },
     \tagaddtext{[\si{\decibel}]}
   \end{equation}
-  donde $\sqrt{G_l}$ es el producto de los patrones de radiacion de las antena transmisora y receptora en la dirección de la línea de mira, la línea recta que une transmisor y receptor, $\lambda$, la longitud de onda de la señal y $d$, la distancia entre emisor y receptor.
+  donde $\sqrt{G_l}$ es el producto de los patrones de radiación de las antena transmisora y receptora en la dirección de la línea de mira, la línea recta que une transmisor y receptor, $\lambda$, la longitud de onda de la señal y $d$, la distancia entre emisor y receptor.
 
-  Como es muy difícil conocer $G_l$, podemos estudiar cuál es la pérdida por trayectoria relativa a la máxima potencia recibida ${P_l}_r$, que es cuando el sátelite pasa por el cénit de la estación terrena y $d = h$, ver \cref{fig:free-space-path-loss}.
+  Para independizarnos de $G_l$, podemos estudiar cuál es la pérdida por trayectoria relativa a la máxima potencia recibida ${P_l}_r$, que es cuando el satélite pasa por el cénit de la estación terrena y $d = h$, ver \cref{fig:free-space-path-loss}.
 
   \begin{align}
     {P_l}_r &= -10 \log_{10}{ \frac{ G_l \lambda^2 / \left( 4\pi \right)^2 d^2 }{ G_l \lambda^2 / \left( 4\pi \right)^2 h^2 }} = - 10 \log_{10}{ \left( \frac{h}{d} \right)^2} \nonumber \\
@@ -145,7 +148,7 @@
 
   Si queremos representar la potencia recibida normalizada ${P_r}_n$, es decir, en una escala de 0 a 1,
   \begin{equation}
-    {P_r}_n = 10 \log_{10}{ -\frac{{P_l}_r}{10} } = \left( \frac{h}{d} \right)^2,
+    {P_r}_n = 10^{ - \frac{{P_l}_r}{10} } = \left( \frac{h}{d} \right)^2,
   \end{equation}
   como se muestra en la \cref{fig:received-power}.
 
@@ -177,7 +180,7 @@
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=\linewidth, height=70mm, keepaspectratio]{../images/angular-trajectory-satellite.eps}
-    \caption{Trayectoria angular del sátelite en función del tiempo.}
+    \caption{Trayectoria angular del satélite en función del tiempo.}
     \label{fig:angular-trajectory-satellite}
   \end{figure}
 
@@ -211,14 +214,6 @@
     \caption{Relación de amplitud de las señales en función del tiempo.}
     \label{fig:t-relative-amplitude}
   \end{figure}
-
-
-
-  % \cites{visser2005,analog-ad9959,murphy2004,popescu2016,goldsmith2004,ippolitojr2008}.
-  %
-  %  %Bibliography
-  %  \newpage
-  %  \printbibliography
 
 \end{standalone}
 \end{document}

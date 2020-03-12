@@ -12,7 +12,7 @@
   Para la implementación del emulador de arreglo de antenas utilizamos dos componentes: un microcontrolador y un sintetizador digital directo.
 
   El microcontrolador elegido es un STM32F103 de ST dentro de la placa de desarrollo Blue-Pill que puede verse en la \cref{fig:blue-pill}.
-  El STM32F103 es un microcontrolador de 32-bit que trabaja a una frecuencia máxima de 72MHz, tiene una memoria flash de 64 o 128KB y entre otras características, cuenta con siete temporizadores e interfaces de comunicación SPI, I2C, USART, CAN y USB \cite{STM32F103_datasheet}.
+  El STM32F103 es un microcontrolador de 32-bit que trabaja a una frecuencia máxima de 72 MHz, tiene una memoria flash de 64 o 128 kB y entre otras características, cuenta con siete temporizadores e interfaces de comunicación SPI, I2C, USART, CAN y USB \cite{STM32F103_datasheet}.
 
   \begin{figure}[!htbp]
     \centering
@@ -22,7 +22,7 @@
   \end{figure}
 
   Para el sintetizador digital directo, se cuenta con una placa de desarrollo del AD9959 de la empresa Analog Devices como la de la \cref{fig:ad9959}.
-  El AD9959 es un sintetizador digital directo de 4-canales que trabaja a una frecuencia máxima de 500 MHz y cuenta con conversores digital-analógico de 10-bits y comunicación SPI \cite{ad9959_datasheet}.
+  El AD9959 es un sintetizador digital directo de cuatro canales que trabaja a una frecuencia máxima de reconstrucción de 500 MHz y cuenta con conversores digital-analógico de 10-bits y comunicación SPI \cite{ad9959_datasheet}.
 
   \begin{figure}[!htbp]
     \centering
@@ -65,10 +65,10 @@
   Como para este prototipo no utilizaremos las funciones secundarias de los pines SDIO\_X, los conectamos a pines GPIO configurados como salidas en 0.
 
   El protocolo SPI también necesita dos pines adicionales: una línea de reloj que permite sincronizar la comunicación y un pin de selección para activar y desactivar la comunicación al dispositivo.
-  Conectamos los pines de relok SCLK y de selección \textoverline{CS} del sintetizador a los pines A5 (SCK1) y A4 (NSS1) del microcontrolador.
+  Conectamos los pines de reloj SCLK y de selección \textoverline{CS} del sintetizador a los pines A5 (SCK1) y A4 (NSS1) del microcontrolador.
 
   El pin IO\_UPDATE del AD9959 tiene como función transferir los datos recibidos de un buffer a los verdaderos registros.
-  Esto produce que los cambios efectuados en el dispositivo se apliquen simulténeamente con el flanco ascendente del pin IO\_UPDATE.
+  Esto produce que los cambios efectuados en el dispositivo se apliquen simultáneamente con el flanco ascendente del pin IO\_UPDATE.
   Conectamos este pin a A3 como salida digital del microcontrolador.
 
   El pin MASTER\_RESET es una entrada digital que, cuando recibe un 1, reinicia los registros del sintetizador a sus valores por defecto.
@@ -76,7 +76,7 @@
 
   El pin PWR\_DWN\_CTL controla el modo de ahorro de energía.
   Cuando esta entrada recibe un 1, se activa el modo de ahorro de energía.
-  Como estaremos constatemente usando el sintetizador, conectamos este pin al GPIO B14 del microcontrolador configurado como salida en 0.
+  Como estaremos constantemente usando el sintetizador, conectamos este pin al GPIO B14 del microcontrolador configurado como salida en 0.
 
   Los pines P0 a P3 del AD9959 se usan para modulación.
   Como no utilizaremos esta funcionalidad, podemos dejar estos pines flotando.
@@ -137,7 +137,7 @@
   Una vez que hemos realizado la configuración inicial de registros, podemos comenzar con la emulación propiamente dicha.
 
   Configuramos el Timer1 del microcontrolador para realizar una interrupción cada milisegundo, es decir, con una velocidad de 1 kHz.
-  En cada interrupción se calcula la posición del sátelite y en base a ello, la frecuencia, amplitud y fase de las señales recibidas por los elementos del arreglo de antena como se describió en el \cref{sec:modelo-senales}.
+  En cada interrupción se calcula la posición del satélite y en base a ello, la frecuencia, amplitud y fase de las señales recibidas por los elementos del arreglo de antena como se describió en el \cref{sec:modelo-senales}.
   Luego, se escriben los registros necesarios para obtener estas señales en los canales del sintetizador como explicaremos a continuación.
 
   Primero, debemos seleccionar el canal que queremos modificar.
@@ -170,7 +170,7 @@
   siendo $0 \leq a_{out} \leq 1$ la amplitud de salida normalizada.
   Los bits 23 a 10 definen otros parámetros de la amplitud que no utilizaremos para nuestro prototipo, por lo que los dejamos en 0.
 
-  \subsection{Sincronización de múltiples sintetizadores} \label{subsec:sincronizacion}
+  \subsection{Posibilidad de extensión del emulador} \label{subsec:sincronizacion}
 
   El AD9959 permite sincronizar múltiples sintetizadores del mismo modelo fácilmente \cite[29,30]{ad9959_datasheet}.
   Esto es una característica especialmente interesante si queremos extender el sistema propuesto para un arreglo plano de antenas.
@@ -195,7 +195,7 @@
 
   Por último, la comunicación SPI entre microcontrolador y sintetizadores debe respetar la configuración de esclavos independientes.
   Cabe aclarar que, ahora, con maestro nos referimos al microcontrolador y con esclavos, a todos los sintetizadores (independientemente de cuál es el sintetizador maestro o esclavo en la sincronización).
-  En esta configuración de esclavos independientes, las líneas SCLK, MOSI y MISO son compartida entre todos los esclavos y las lineas de \textoverline{CS} son individuales, es decir que hay una para cada esclavo, y controlan con cuál dispositivo se quiere comunicar el maestro.
+  En esta configuración de esclavos independientes, las líneas SCLK, MOSI y MISO son compartida entre todos los esclavos y las líneas de \textoverline{CS} son individuales, es decir que hay una para cada esclavo, y controlan con cuál dispositivo se quiere comunicar el maestro.
 
 \end{standalone}
 \end{document}
