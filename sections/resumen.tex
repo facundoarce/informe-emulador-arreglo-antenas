@@ -3,10 +3,12 @@
 \begin{document}
 
 Arreglos de antenas y técnicas de apuntamiento de haz pueden utilizarse para comunicaciones satelitales.
-Es posible realizar estudios de estos sistemas y suprimir la necesidad de contar con un arreglo de antenas físico y de tener que esperar la pasada de un satélite si se cuenta con un emulador de las señales recibidas por los elementos del arreglo.
-Se pueden utilizar estas señales como entradas para otros dispositivos como por ejemplo un sistema de adquisición y procesamiento de datos.
+Es posible estudiar estos sistemas, suprimiendo la necesidad de contar con un arreglo físico y de tener que esperar la pasada de un satélite, si se cuenta con un emulador de arreglo de antenas que produzca las señales que reciben los elementos del arreglo durante la recepción.
+Estas señales pueden usarse como entradas para otros dispositivos, como por ejemplo un sistema de adquisición y procesamiento de datos.
 
-El objetivo del presente trabajo es desarrollar un sistema que permita emular las señales recibidas por un arreglo de antenas.
-Para ello, se modelaron dichas señales para un arreglo lineal, se desarrolló un prototipo que las genera y se estudió la posibilidad de extender el emulador para un arreglo plano de antenas.
+El objetivo del presente trabajo es desarrollar el emulador mencionado anteriormente para un caso simple, esto es, un arreglo lineal de antenas y un satélite que pasa por el cénit de la estación terrena describiendo una órbita circular.
+Se modelaron las señales recibidas por los elementos del arreglo teniendo en cuenta las variación en frecuencia, fase y amplitud dadas por el movimiento del satélite y la geometría del arreglo.
+Se implementó el emulador con un microcontrolador y un sintetizador digital directo y se realizaron pruebas, con un osciloscopio y un analizador de espectro, para validar el modelo propuesto y la implementación realizada.
+Finalmente, se estudió la arquitectura del sintetizador digital directo para extender la capacidad del emulador para arreglos planos de antenas.
 
 \end{document}
