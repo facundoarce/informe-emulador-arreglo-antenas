@@ -2,11 +2,16 @@
 
 \begin{document}
 
-Antenna arrays and beamforming techniques can be used for communication with satellites.
-It is possible to study such systems and suppress the need of a physical antenna array by means of an emulator of the signals received by the array elements.
-These signals can be then used as inputs to other devices such as a data acquisition and processing system.
+Establishing the communication between a low Earth orbit satellite and a ground station requires an antenna able to change its beam-pointing direction to track the satellite as it passes by.
+Instead of mechanical steering systems, electronic steering by means of an antenna array and a beamformer can be used.
 
-The goal of the present work is to develop a system that emulates the signals received by an antenna array.
-A model of these signals for a linear array was conceived, a prototype that generates them was developed, and the possibility to extend its capabilities to a planar array was studied.
+To test the beamformer during its development, it is necessary in principle to have an antenna array and the capacity to receive signals from different orientations.
+In order to avoid this, an emulator of an antenna array that generates the signals received by the different array elements during the reception phase can be developed.
+These signals can be used as inputs to different beamforming systems, whether they are optical, analog or digital.
+
+In the present work an emulator was developed for a simple case, i.e., a lineal antenna array and a satellite that passes by the zenit of the ground station describing a circular orbit.
+The signals received by the array elements were modeled having in consideration the phase shift due to the geometry of the array, the frequency shift due to the Doppler effect, and the change in amplitude due to the free-space path loss.
+The emulator was implemented using a microcontroller and a direct digital synthesizer (DDS) and tests with an oscilloscope and a spectrum analyzer were carried out to validate the proposed model and the implementation.
+Finally, the architecture of the chosen DDS was studied to extend the emulator capabilities to a planar array.
 
 \end{document}
